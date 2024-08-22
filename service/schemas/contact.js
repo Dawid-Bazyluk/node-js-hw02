@@ -1,4 +1,4 @@
-const { required } = require("joi");
+
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -13,7 +13,7 @@ const contact = new Schema(
       required: [true, "Set email for contacts"],
     },
     phone: {
-      type: Number,
+      type: String,
       required: [true, "Set phone number for contacts"],
     },
     favorite: {

@@ -8,7 +8,7 @@ const getContactById = async (contactId) => {
   return Contact.findOne({ _id: contactId });
 };
 
-const removeContact = (contactId) => {
+const removeContact = async (contactId) => {
   return Contact.findOneAndDelete({ _id: contactId });
 };
 
