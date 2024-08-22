@@ -87,11 +87,6 @@ const update = async (req, res, next) => {
   const { contactId } = req.params;
   const { name, email, phone } = req.body;
 
-  if (name === undefined || email === undefined || phone === undefined) {
-    res.status(400).json({ message: "missing required name - field" });
-    return;
-  }
-
   try {
     const contacts = await service.getContactById(contactId);
 
