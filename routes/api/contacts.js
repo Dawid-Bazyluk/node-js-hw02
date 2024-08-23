@@ -17,9 +17,9 @@ const postSchema = Joi.object({
   phone: Joi.string().required(),
 });
 const putSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().required(),
+  name: Joi.string(),
+  email: Joi.string().email(),
+  phone: Joi.string(),
 });
 
 router.get("/", async (req, res, next) => {
@@ -43,7 +43,6 @@ router.get("/:contactId", async (req, res, next) => {
     const contact = await getContactById(contactId);
     if (contact) {
       return res.json({ status: "success", code: 200, data: { contact } });
-      return;
     }
     res.status(404).json({ message: "Not Found", code: 404 });
   } catch (err) {
@@ -62,7 +61,6 @@ router.post("/", async (req, res, next) => {
         message: "Missing required field",
         details: error.details,
       });
-      return;
     }
     const { name, email, phone } = value;
     const contact = await addContact({ name, email, phone });
@@ -109,8 +107,8 @@ router.put("/:contactId", async (req, res, next) => {
         status: "failure",
         code: 400,
         message: "Missing fields",
+        details: error.details,
       });
-      return;
     }
 
     const { contactId } = req.params;
