@@ -91,12 +91,18 @@ const logIn = async (req, res, _) => {
 
 const logOut = async (req, res, next) => {
   try {
-    req.user.token = null;
-    await req.user.save();
-    res.json({
-      status: "success",
-      code: 204,
-    });
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(401).json({
+        message: "Not authorized",
+      });
+    }
+
+    user.token = null;
+    await user.save();
+
+    return res.status(204).send();
   } catch (err) {
     next(err);
   }
