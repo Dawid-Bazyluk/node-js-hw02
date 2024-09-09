@@ -41,6 +41,10 @@ const updateSubscription = (subscription, owner) => {
   return User.findByIdAndUpdate({ _id: owner }, { subscription: subscription });
 };
 
+const updateAvatar = (avatarURL, owner) => {
+  return User.findByIdAndUpdate({ _id: owner }, { $set: { avatarURL } });
+};
+
 module.exports = {
   createContact,
   createtUser,
@@ -52,4 +56,5 @@ module.exports = {
   updateContact,
   updateStatusContact,
   updateSubscription,
+  updateAvatar,
 };

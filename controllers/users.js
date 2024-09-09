@@ -1,11 +1,15 @@
 const service = require("../service");
 const jwt = require("jsonwebtoken");
 const User = require("../schemas/users.schema");
+const Joi = require("joi");
+const gravatar = require("gravatar");
+const path = require("path");
+const fs = require("fs");
+const Jimp = require("jimp");
 
 require("dotenv").config();
 const secret = process.env.SECRET;
 
-const Joi = require("joi");
 const postSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string(),
