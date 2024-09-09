@@ -102,7 +102,7 @@ const logOut = async (req, res, next) => {
     user.token = null;
     await user.save();
 
-    return res.status(204).send();
+    res.status(204).send();
   } catch (err) {
     next(err);
   }
