@@ -1,7 +1,7 @@
 const app = require("./app");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const verifyFolders = require("./utils/folder")
+const verifyFolders = require("./utils/folder");
 
 const DB_URL = process.env.DB_URL;
 
@@ -9,7 +9,7 @@ mongoose
   .connect(DB_URL)
   .then(() => {
     app.listen(3000, function () {
-      verifyFolders()
+      verifyFolders();
       console.log(
         "Database connection successful. Server running. Use our API on port: 3000"
       );
