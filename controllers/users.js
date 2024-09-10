@@ -135,8 +135,11 @@ const updateImageURL = async (req, res, next) => {
   const { _id } = req.user;
 
   const storeImage = path.join(process.cwd(), "public", "avatars");
+  console.log(storeImage)
   const avatarPath = path.join(storeImage, `${avatar.originalname}`);
+  console.log(avatarPath)
   const avatarURL = `/avatars/${avatar.originalname}`;
+  console.log(avatarURL);
 
   try {
     const avatarResize = await Jimp.read(avatar.path);
