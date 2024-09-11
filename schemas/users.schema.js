@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bCrypt = require("bcrypt");
+const { verify } = require("jsonwebtoken");
 const saltRounds = 10;
 
 const user = new Schema(
@@ -25,6 +26,15 @@ const user = new Schema(
     },
     avatarURL: {
       type: String,
+    },
+
+    verify: {
+      type: Boolean,
+      default: false
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Verify token is required"],
     },
   },
   { versionKey: false }

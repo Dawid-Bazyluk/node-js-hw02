@@ -26,6 +26,16 @@ const auth = (req, res, next) => {
     }
 
     req.user = user;
+
+    if (user.verificationToken !== "null") {
+      return res.status(401).json({
+        status: "error",
+        code: 401,
+        message: "Email was not confirmed.",
+        data: "Unauthorized",
+      });
+    }
+    
     next();
   })(req, res, next);
 };
