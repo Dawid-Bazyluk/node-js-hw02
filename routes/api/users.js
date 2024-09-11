@@ -4,6 +4,10 @@ const controllerUser = require("../../controllers/users");
 const authenticator = require("../../auth/auth");
 const avatarUpload = require("../../middleware/upload");
 
+router.get("/verify/:verificationToken", controllerUser.checkUser);
+
+router.post("/verify", controllerUser.verificationEmail);
+
 router.post("/signup", controllerUser.signUp);
 
 router.post("/login", controllerUser.logIn);
